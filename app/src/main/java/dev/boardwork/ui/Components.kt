@@ -117,11 +117,12 @@ fun TraceDivider(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Pill(text: String, color: Color = BW.Dim, modifier: Modifier = Modifier) {
+fun Pill(text: String, color: Color = BW.Dim, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
     Box(
         modifier
             .clip(RoundedCornerShape(20.dp))
             .border(1.dp, color.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
+            .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier)
             .padding(horizontal = 9.dp, vertical = 4.dp)
     ) {
         Text(text.uppercase(), style = Label.copy(color = color))
